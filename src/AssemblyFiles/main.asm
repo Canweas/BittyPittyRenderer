@@ -8,7 +8,7 @@ getLengthString:
     ret
 
 print:
-    mov r11, rax
+    mov r11, rdi
 
     mov rax, 1
     mov rdi, 1
