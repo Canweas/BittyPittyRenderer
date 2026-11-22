@@ -9,3 +9,4 @@
 // custom libraries
 #include "stringLib.h"
 #include "windowManager.h"
+#include "rasterizer.h"

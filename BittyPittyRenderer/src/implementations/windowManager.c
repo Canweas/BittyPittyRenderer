@@ -55,6 +55,10 @@ void drawWindow(Window* w) {
     print(string);
 }
 
+void clearTerminal() {
+    print("\033[2J\033[H");
+}
+
 void resetCursorPos() {
     print("\033[H");
 }

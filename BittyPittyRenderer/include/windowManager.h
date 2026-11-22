@@ -16,6 +16,8 @@ void destroyWindow(Window* w);
 void resetWindow(Window* w, char resetSymbol);
 void drawWindow(Window* w);
 
+void clearTerminal();
+
 void resetCursorPos();
 void waitNextFrame(uint16_t FPS);
 
