@@ -1,29 +1,34 @@
+PRJ_DIR = ./BittyPittyRenderer/
+
 ASM = nasm
 ASM_FLAGS = -f elf64
 
 GXX = gcc
-C_FLAGS =
-
-MAIN_C_SRC = ./src/main.c
-MAIN_ASM_SRC = ./asmSrc/main.asm
+C_FLAGS = -no-pie
 
 TARGET = app
+
+ASM_SRC = ./BittyPittyRenderer/src/implementations/stringLib.asm
+SRC = $(wildcard ./BittyPittyRenderer/src/*.c) $(wildcard ./BittyPittyRenderer/src/implementations/*.c)
+
+OBJS = ./objs/stringLib.o
 
 all: $(TARGET)
 
 clean:
-	rm -f $(TARGET) ./objs/a.o ./objs/c.o
+	rm -f $(TARGET) $(OBJS)
 
 run: $(TARGET)
 	./$(TARGET)
 
-$(TARGET): ./objs/a.o ./objs/c.o
-	$(GXX) ./objs/a.o ./objs/c.o -o $(TARGET)
+rundel: clean all
+	./$(TARGET)
+	rm -f $(OBJS) $(TARGET)
 
-./objs/a.o:
-	$(ASM) $(ASM_FLAGS) $(MAIN_ASM_SRC) -o ./objs/a.o
+$(TARGET): $(OBJS)
+	$(GXX) $(C_FLAGS) $(OBJS) $(SRC) -o $(TARGET)
 
-./objs/c.o:
-	$(GXX) -c $(MAIN_C_SRC) -o ./objs/c.o $(C_FLAGS)
+$(OBJS):
+	$(ASM) $(ASM_FLAGS) $(ASM_SRC) -o $(OBJS)
 
 .PHONY: all clean run
