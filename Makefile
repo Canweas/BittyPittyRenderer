@@ -3,7 +3,7 @@ PRJ_DIR = ./BittyPittyRenderer/
 ASM = nasm
 ASM_FLAGS = -f elf64
 
-GXX = gcc
+CC = gcc
 C_FLAGS = -no-pie -lm
 
 TARGET = app
@@ -26,7 +26,7 @@ rundel: clean all
 	rm -f $(OBJS) $(TARGET)
 
 $(TARGET): $(OBJS)
-	$(GXX) $(C_FLAGS) $(OBJS) $(SRC) -o $(TARGET)
+	$(CC) $(C_FLAGS) $(OBJS) $(SRC) -o $(TARGET)
 
 $(OBJS):
 	$(ASM) $(ASM_FLAGS) $(ASM_SRC) -o $(OBJS)
