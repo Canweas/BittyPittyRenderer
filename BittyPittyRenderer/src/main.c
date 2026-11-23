@@ -1,8 +1,8 @@
 #include "../include/central.h"
 #include <stdio.h>
 
-#define SCREEN_WIDTH 67
-#define SCREEN_HEIGHT 32
+#define SCREEN_WIDTH 112 // WIDTH OF WINDOW XTERM TERMINUS SIZE 8 1366 * 768
+#define SCREEN_HEIGHT 59 // HEIGHT OF WINDOW XTERM TERMINUS SIZE 8 1366 * 768
 
 int main(void) {
     Window* w = createWindow(SCREEN_WIDTH, SCREEN_HEIGHT, '.');
