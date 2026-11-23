@@ -53,6 +53,8 @@ void drawWindow(Window* w) {
     }
 
     print(string);
+    
+    free(string);
 }
 
 void clearTerminal() {
