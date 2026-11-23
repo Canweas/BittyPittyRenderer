@@ -13,7 +13,7 @@ getStringLength:
     mov r12, rdi
 
     .loop:
-        cmp [r12], 0
+        cmp byte [r12], 0
         je .end
 
         inc r12
@@ -49,8 +49,8 @@ print:
 ; RAX = return: pointer to string
 ; RDI = char
 charToString:
-    mov [stringBuffer + 0], rdi
-    mov [stringBuffer + 1], 0
+    mov byte [stringBuffer + 0], dil
+    mov byte [stringBuffer + 1], 0
     
     mov rax, stringBuffer
     ret
