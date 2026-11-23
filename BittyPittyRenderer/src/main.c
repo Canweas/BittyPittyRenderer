@@ -1,25 +1,42 @@
 #include "../include/central.h"
+#include <stdio.h>
+
+#define SCREEN_WIDTH 67
+#define SCREEN_HEIGHT 32
 
 int main(void) {
-    Window* w = createWindow(67, 32, ' ');
+    Window* w = createWindow(SCREEN_WIDTH, SCREEN_HEIGHT, '.');
 
     if (w == NULL) {
         return 1;
     }
 
-    char* string = "Hello world!\n";
-    int stringLen = getStringLength(string);
+    int halfX = roundf((float) SCREEN_WIDTH / 2);
+    int halfY = roundf((float) SCREEN_HEIGHT / 2);
 
     clearTerminal();
+
+    Triangle2d t1;
+    t1.vertices[0] = (Vector2d) {halfX - 10, halfY + 10};
+    t1.vertices[1] = (Vector2d) {halfX + 10, halfY + 10};
+    t1.vertices[2] = (Vector2d) {halfX - 10, halfY - 10};
+
+    t1.symbol = '#';
+
+    Triangle2d t2;
+    t2.vertices[0] = (Vector2d) {halfX + 10, halfY + 10};
+    t2.vertices[1] = (Vector2d) {halfX - 10, halfY - 10};
+    t2.vertices[2] = (Vector2d) {halfX + 10, halfY - 10};
+    
+    t2.symbol = '#';
 
     while(1) {
         resetCursorPos();
         resetWindow(w, w->resetSymbol);
 
-        for (int i = 0; i < stringLen; i++) {
-            setPixel(w, i, 1, *charToString(string[i]));
-        }
-
+        setTriangleT(w, t1);
+        setTriangleT(w, t2);
+        
         drawWindow(w);
         waitNextFrame(30);
     }

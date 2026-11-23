@@ -4,7 +4,7 @@ ASM = nasm
 ASM_FLAGS = -f elf64
 
 GXX = gcc
-C_FLAGS = -no-pie
+C_FLAGS = -no-pie -lm
 
 TARGET = app
 
